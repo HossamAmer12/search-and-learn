@@ -12,7 +12,9 @@ device = "cpu"
 
 # model_id = "meta-llama/Meta-Llama-3-8B-Instruct"
 # model_id = "meta-llama/Llama-3.2-1B-Instruct"
-model_id = "RLHFlow/Llama3.1-8B-PRM-Deepseek-Data"
+# model_id = "RLHFlow/Llama3.1-8B-PRM-Deepseek-Data"
+
+model_id = "TinyLlama/TinyLlama_v1.1"
 
 pipeline = transformers.pipeline(
     "text-generation",
