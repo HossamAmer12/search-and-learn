@@ -51,6 +51,8 @@ def main():
         enable_prefix_caching=True,
         seed=config.seed,
         tensor_parallel_size=num_gpus,
+        # V100 change
+        dtype = "float"
     )
     prm = load_prm(config)
 

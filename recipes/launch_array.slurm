@@ -15,7 +15,7 @@ sbatch recipes/launch_array.slurm recipes/Llama-3.2-1B-Instruct/best_of_n.yaml \
 
 source ~/.bashrc
 set -x -e
-conda activate sal
+conda activate ttc
 
 # Define the array of input files (assuming 10 input files)
 STEP=50

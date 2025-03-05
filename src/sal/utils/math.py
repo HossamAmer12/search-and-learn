@@ -243,7 +243,18 @@ def compute_pass_at_k(x, k):
     Returns:
         dict: A dictionary containing pass@k results.
     """
-    n = len(x["preds"])
+    
+    # print("Debug hossam")
+    # # print(x)
+    # print("---------------")
+    # # print(x['pred'])
+    # print("---------------")
+    # #print(x['preds'])
+    # print(x['answer'])
+    # exit(0)
+    # Hossam preds are pred in the dictionary
+    # n = len(x["preds"])
+    n = len(x["pred"])
     if n == 0:
         raise ValueError("No predictions found")
     if x["answer"] == "":
@@ -253,7 +264,16 @@ def compute_pass_at_k(x, k):
     canonical_answer = memoized_canonical_form(x["answer"])
 
     # Compute the count of predictions matching the canonical answer
-    c = sum(memoized_canonical_form(pred) == canonical_answer for pred in x["preds"])
+    # c = sum(memoized_canonical_form(pred) == canonical_answer for pred in x["preds"])
+    c = sum(memoized_canonical_form(pred) == canonical_answer for pred in x["pred"])
+
+    ### debugggg
+    for ipred, pred in enumerate(x['pred']):
+        if memoized_canonical_form(pred) == canonical_answer:
+            print("------ipred=%d n=%d c = %d k = %d------->" % (ipred, n, c, k))
+            print(x['problem'])
+            print(memoized_canonical_form(pred), canonical_answer)
+            print(pred)
 
     # Calculate pass@k
     return {f"pass@{k}": pass_at_k(n, c, k)}

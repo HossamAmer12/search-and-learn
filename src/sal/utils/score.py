@@ -25,6 +25,7 @@ from sal.utils.math import (
     compute_maj_pred,
     compute_naive_pred,
     compute_weighted_pred,
+    compute_pass_at_k,
     extract_completion_answers,
     subsample_completions,
 )
@@ -79,6 +80,15 @@ def score(dataset: Dataset, config: Config) -> Dataset:
             num_proc=config.num_proc,
             desc=f"Compute naive pred {n}",
         )
+
+        # Hossam Compute pass@k
+        # dataset = dataset.map(
+        #     compute_pass_at_k,
+        #     fn_kwargs={"k": 32},
+        #     num_proc=config.num_proc,
+        #     desc=f"Compute oracle pred {n}",
+        # )
+
         # Nuke unused columns to keep dataset lean
         dataset = dataset.remove_columns(
             [f"completions@{n}", f"agg_scores@{n}", f"preds@{n}"]
