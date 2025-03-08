@@ -1,0 +1,26 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Launch Test Time Compute",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/scripts/test_time_compute.py",
+            "args": [
+                "--dataset_start=0",
+                "--dataset_end=1",
+                "--search_batch_size=25",
+                "--seed=1",
+                "--n=4"
+            ],
+            "env": {
+                "CUDA_VISIBLE_DEVICES": "4,5,6,7"
+            },
+            "console": "integratedTerminal"
+        }
+    ]
+}
