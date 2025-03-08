@@ -17,11 +17,19 @@
 # seed: 0
 
 # Running for all and 256
+# approach: best_of_n
+# n: 256
+# search_batch_size: 25
+# sort_completed: true
+# filter_duplicates: true
+# seed: 0
+
 approach: best_of_n
-n: 256
+n: 4
 search_batch_size: 25
 sort_completed: true
 filter_duplicates: true
+num_samples: 1         # REMOVE THIS LINE TO RUN ON THE WHOLE DATASET
 seed: 0
 
 
