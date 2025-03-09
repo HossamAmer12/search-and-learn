@@ -1,0 +1,13 @@
+1 all batch
+128 n
+8 GPU
+11mins per example
+
+4GPUs n=4... 5 hrs
+
+# 8 GPUs pass@K
+time python scripts/test_time_compute.py $CONFIG --seed=1 --search_batch_size=25 --prm_batch_size=1 --dataset_start=1 --dataset_end=500 --n=25
+real    445m54.057s
+user    1408m17.080s
+sys     99m14.738s
+
