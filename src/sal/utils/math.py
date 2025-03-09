@@ -89,17 +89,17 @@ def memoized_canonical_form(expression: str, timeout_seconds: int = 3) -> str:
 
 def subsample_completions(x: Dict[str, List[Any]], n: int) -> Dict[str, List[Any]]:
     completions = x["completions"]
-    agg_scores = x["agg_scores"]
-    if len(completions) != len(agg_scores):
-        raise ValueError(
-            f"The number of completions and agg_scores should be the same. Got {len(completions)} completions and {len(agg_scores)} agg_scores."
-        )
+    # agg_scores = x["agg_scores"]
+    # if len(completions) != len(agg_scores):
+    #     raise ValueError(
+    #         f"The number of completions and agg_scores should be the same. Got {len(completions)} completions and {len(agg_scores)} agg_scores."
+    #     )
 
     # Take the first n samples, as the completions are ordered in groups of size m e.g [0,0,0,0, 1,1,1,1, 2,2,2,2, ...]
     # We need to ensure these groups are not broken up in order to have a valid comparison at smaller n
     return {
         f"completions@{n}": completions[:n],
-        f"agg_scores@{n}": agg_scores[:n],
+        # f"agg_scores@{n}": agg_scores[:n],
     }
 
 
@@ -307,6 +307,28 @@ def compute_pass_at_k_hossam(x, k):
                 + memoized_canonical_form(x[f'preds@{k}'][0])
                 + "}"
             }
+
+def compute_baseline(x, k):
+    """
+    Computes pass@k for predictions, using canonical forms to group and compare answers.
+
+    Args:
+        x (dict): A dictionary containing "preds" (list of predictions) and "answer" (correct answer).
+        k (int): The cutoff for pass@k.
+
+    Returns:
+        dict: A dictionary containing pass@k results.
+    """
+    # Compute the canonical form of the correct answer
+    canonical_answer = memoized_canonical_form(x["answer"])
+
+    # Figure out the pass@k answer here
+    return {
+                f"pred_baseline": "\\boxed{"
+                + memoized_canonical_form(x[f'preds@{k}'][0])
+                + "}"
+            }
+
 
 def compute_level(
     x, metric: Literal["mean_score", "pass@1"], name: str, quintiles: List[float]

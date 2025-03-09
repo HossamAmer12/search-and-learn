@@ -55,7 +55,10 @@ def main():
         # V100 change
         dtype = "float"
     )
-    prm = load_prm(config)
+
+    # Hossam no load prm
+    # prm = load_prm(config)
+    prm = None
 
     dataset = get_dataset(config)
     dataset = dataset.map(

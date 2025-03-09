@@ -57,7 +57,7 @@ def best_of_n(x, config: Config, llm: LLM, prm: PRM):
     responses = llm.generate(
         templated_convs,
         sampling_params=sampling_params,
-        use_tqdm=False,
+        use_tqdm=True,
     )
     if len(responses) != len(x["problem"]) * config.n:
         raise ValueError(
@@ -81,17 +81,18 @@ def best_of_n(x, config: Config, llm: LLM, prm: PRM):
         if len(c) != config.n:
             raise ValueError(f"Generated {len(c)} completions instead of {config.n}")
 
-    scores = prm.score(x["problem"], completions)
-    agg_scores = [
-        [aggregate_scores(s, config.agg_strategy) for s in score] for score in scores
-    ]
+    # Hossam no prm
+    # scores = prm.score(x["problem"], completions)
+    # agg_scores = [
+    #     [aggregate_scores(s, config.agg_strategy) for s in score] for score in scores
+    # ]
 
     # Select the completion with the highest score
-    pred = [completion[np.argmax(s)] for completion, s in zip(completions, agg_scores)]
+    # pred = [completion[np.argmax(s)] for completion, s in zip(completions, agg_scores)]
 
     x["completions"] = completions
-    x["scores"] = scores
-    x["pred"] = pred
+    # x["scores"] = scores
+    # x["pred"] = pred
     x["completion_tokens"] = completion_tokens
 
     return x
