@@ -11,3 +11,5 @@ real    445m54.057s
 user    1408m17.080s
 sys     99m14.738s
 
+# 4 GPUs pass@K 3/9/2025 1pm 
+CUDA_VISIBLE_DEVICES=4,5,6,7 python scripts/test_time_compute.py $CONFIG --seed=1 --search_batch_size=25 --prm_batch_size=1 --dataset_start=1 --dataset_end=500 --n=256
