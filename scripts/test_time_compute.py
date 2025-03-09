@@ -18,7 +18,6 @@ import logging
 import torch
 from vllm import LLM
 
-
 from sal.config import Config
 from sal.models.reward_models import load_prm
 from sal.search import beam_search, best_of_n, dvts

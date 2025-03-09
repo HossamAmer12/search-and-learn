@@ -304,7 +304,7 @@ def compute_pass_at_k_hossam(x, k):
 
     return {
                 f"pred_pass@{k}": "\\boxed{"
-                + memoized_canonical_form(x[f'preds@{n}'][0])
+                + memoized_canonical_form(x[f'preds@{k}'][0])
                 + "}"
             }
 
