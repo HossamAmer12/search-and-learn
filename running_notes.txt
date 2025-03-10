@@ -54,7 +54,7 @@ sys     148m54.044s
 6    1     24.048096   24.048096  24.649299
 7    4     24.048096   43.286573  29.859719
 
-# 4GPUs
+# 4GPUs AIME
 time python scripts/test_time_compute.py $CONFIG --seed=1 --search_batch_size=25 --prm_batch_size=1 --n=256  --dataset_name=AI-MO/aimo-validation-aime --dataset_split=train
 
      n  acc_baseline  acc_pass@k   acc_maj
