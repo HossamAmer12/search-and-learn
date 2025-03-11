@@ -70,3 +70,6 @@ time python scripts/test_time_compute.py $CONFIG --seed=1 --search_batch_size=25
 real    134m55.588s
 user    251m37.241s
 sys     16m39.806s
+
+# 4GPUs Tiny Llama math code we train
+CUDA_VISIBLE_DEVICES=4,5,6,7 python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/best_of_n.yaml --seed=1 --search_batch_size=25 --prm_batch_size=1 --dataset_start=0 --dataset_end=500 --n=256 --model_path="/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-100"
