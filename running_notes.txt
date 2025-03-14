@@ -1,2 +1,9 @@
 # Started 1pm March 14, 2025
 CUDA_VISIBLE_DEVICES=4,5,6,7 python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml --seed=1 --search_batch_size=25 --prm_batch_size=1 --dataset_start=0 --dataset_end=500 --n=64 --model_path="/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-100"
+
+Ran 10 examples:
+real    31m24.744s
+user    41m38.985s
+sys     2m0.391s
+
+
