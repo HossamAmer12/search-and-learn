@@ -17,7 +17,8 @@ device = "cpu"
 # model_id = "TinyLlama/TinyLlama_v1.1"
 # model_id = "TinyLlama/TinyLlama_v1.1_math_code"
 
-for model_id in ["meta-llama/Llama-3.2-1B-Instruct", "RLHFlow/Llama3.1-8B-PRM-Deepseek-Data"]:
+# for model_id in ["meta-llama/Llama-3.2-1B-Instruct", "RLHFlow/Llama3.1-8B-PRM-Deepseek-Data"]:
+for model_id in ["Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B"]:
     pipeline = transformers.pipeline(
         "text-generation",
         model=model_id,
