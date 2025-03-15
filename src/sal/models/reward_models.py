@@ -292,6 +292,14 @@ class SkyworkO1(PRM):
             **model_kwargs,
         ).eval()
 
+        # Hossam force the cpu for the prm
+        # model = SkyworkPRMModel.from_pretrained(
+        #     prm_model_path,
+        #     device_map="cpu",
+        #     torch_dtype=torch.bfloat16,
+        #     **model_kwargs,
+        # ).eval()
+
         return model, tokenizer
 
     def score(
@@ -299,6 +307,10 @@ class SkyworkO1(PRM):
     ) -> list[list[float]]:
         # reference code: https://huggingface.co/Skywork/Skywork-o1-Open-PRM-Qwen-2.5-7B#huggingface-inference
         all_scores = []
+
+        # Save pretrained model device
+        # pretrained_model_device = self.model.pretrained_model.device
+
         for question, answers in zip(questions, outputs):
             processed_data = [
                 prepare_input(
@@ -310,7 +322,13 @@ class SkyworkO1(PRM):
             input_ids, attention_mask, reward_flags = prepare_batch_input_for_model(
                 input_ids, reward_flags, self.tokenizer.pad_token_id
             )
+            
             device = self.model.pretrained_model.device
+            # Hossam force cpu for skywork
+            # device = torch.device("cpu")  # Force CPU
+            # self.model.to(device)  # Move model to CPU
+            # self.model.pretrained_model.to(device)
+
             with torch.no_grad():
                 _, _, rewards = self.model(
                     input_ids=input_ids.to(device),
@@ -321,6 +339,10 @@ class SkyworkO1(PRM):
                     rewards.detach().to("cpu", dtype=torch.float32), reward_flags
                 )
             all_scores.append(all_step_scores)
+        
+        # # Get back to original state
+        # self.model.to(pretrained_model_device)
+        # self.model.pretrained_model.to(pretrained_model_device)
         return all_scores
 
 

@@ -156,6 +156,12 @@ class SkyworkPRMModel(PreTrainedModelWrapper):
         ):
             kwargs.pop("past_key_values")
 
+        # Move all tensors in kwargs to CPU
+        # device = torch.device("cpu")
+        # for key, value in kwargs.items():
+        #     if isinstance(value, torch.Tensor):
+        #         kwargs[key] = value.to(device)
+
         base_model_output = self.pretrained_model(
             input_ids=input_ids,
             attention_mask=attention_mask,
