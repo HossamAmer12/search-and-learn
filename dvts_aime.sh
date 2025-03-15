@@ -4,6 +4,7 @@
 
 set -evx
 for ((i=0; i<=90; i+=10)); do
+# i=0
     time python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml \
         --seed=1 --search_batch_size=25 --prm_batch_size=1 \
         --dataset_start=$i --dataset_end=$((i+10))  -dataset_name="AI-MO/aimo-validation-aime" --dataset_split="train" \
