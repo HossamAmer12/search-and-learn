@@ -308,6 +308,28 @@ def compute_pass_at_k_hossam(x, k):
                 + "}"
             }
 
+
+def compute_baseline(x, k):
+    """
+    Computes pass@k for predictions, using canonical forms to group and compare answers.
+
+    Args:
+        x (dict): A dictionary containing "preds" (list of predictions) and "answer" (correct answer).
+        k (int): The cutoff for pass@k.
+
+    Returns:
+        dict: A dictionary containing pass@k results.
+    """
+    # Compute the canonical form of the correct answer
+    canonical_answer = memoized_canonical_form(x["answer"])
+
+    # Figure out the pass@k answer here
+    return {
+                f"pred_baseline": "\\boxed{"
+                + memoized_canonical_form(x[f'preds@{k}'][0])
+                + "}"
+            }
+
 def compute_level(
     x, metric: Literal["mean_score", "pass@1"], name: str, quintiles: List[float]
 ) -> Dict[str, int]:
