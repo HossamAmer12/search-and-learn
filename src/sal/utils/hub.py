@@ -18,6 +18,8 @@ from typing import List
 
 from huggingface_hub import list_repo_refs, repo_exists
 
+import os
+from typing import List
 
 def get_dataset_revisions(dataset_id: str) -> List[str]:
     """Get the list of revisions for a dataset on the Hub."""
@@ -25,3 +27,10 @@ def get_dataset_revisions(dataset_id: str) -> List[str]:
         return []
     refs = list_repo_refs(dataset_id, repo_type="dataset")
     return [ref.name for ref in refs.branches if ref.name != "main"]
+
+
+def get_dataset_files(dataset_path: str) -> List[str]:
+    if not os.path.isdir(dataset_path):
+        raise FileNotFoundError(f"Dataset directory '{dataset_path}' not found.")
+
+    return [f for f in os.listdir(dataset_path) if f.endswith(".jsonl")]
