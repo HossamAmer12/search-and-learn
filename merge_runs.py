@@ -33,6 +33,8 @@ Usage:
 # Merge all revisions of a dataset for a given seed
 python merge_runs.py --dataset_name ./data/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-100/dvts_math500/ --approach dvts --output_dir output --dataset_split train
 
+python merge_runs.py --dataset_name ./data/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-300/dvts_math500_beam2/ --approach dvts --output_dir output --dataset_split train; python merge_runs.py --dataset_name ./data/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-300/dvts_aime_beam2/ --approach dvts --output_dir output --dataset_split train
+
 """
 
 
