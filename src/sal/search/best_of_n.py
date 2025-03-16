@@ -57,7 +57,7 @@ def best_of_n(x, config: Config, llm: LLM, prm: PRM):
     responses = llm.generate(
         templated_convs,
         sampling_params=sampling_params,
-        use_tqdm=False,
+        use_tqdm=True,
     )
     if len(responses) != len(x["problem"]) * config.n:
         raise ValueError(

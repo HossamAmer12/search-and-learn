@@ -3,10 +3,10 @@
 # time python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml --seed=1 --search_batch_size=25 --prm_batch_size=1 --dataset_start=0 --dataset_end=10 --n=64 --model_path="/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-100" --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B"
 
 set -evx
-# MODEL="/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-100"
+MODEL="/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-100"
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-math-code-checkpoint-200"
 # MODEL="/home/hossamamer/TTC_checkpoints/TTC-checkpoints/tinyllama-math-code-checkpoint-300"
-MODEL="/home/hossamamer/TTC_checkpoints/TTC-checkpoints/tinyllama-math-code-checkpoint-200"
+# MODEL="/home/hossamamer/TTC_checkpoints/TTC-checkpoints/tinyllama-math-code-checkpoint-200"
 # RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
 RECIPE=recipes/TinyLlama_v1.1_math_code/best_of_n.yaml
 
