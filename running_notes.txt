@@ -139,3 +139,15 @@ tinyllama-from-checkpoint-5000
 3   4           1.2         4.8      1.8
 4   2           1.2         2.4      1.2
 5   1           1.2         1.2      1.2
+
+
+VS checkpoint-100 from tinyllama_math_code with 2T+54M tokens:
+     n  acc_baseline  acc_pass@k  acc_maj
+0   64           3.8        47.6      7.2
+1   32           3.8        39.0      5.6
+2  256           3.8        64.6      6.8
+3  128           3.8        57.0      7.2
+4   16           3.8        27.8      6.2
+5    1           3.8         3.8      3.2
+6    4           3.8        10.2      4.0
+7    2           3.8         7.2      3.2
