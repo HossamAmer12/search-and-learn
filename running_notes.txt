@@ -174,3 +174,5 @@ tinyllama-from-checkpoint-31908
 4   2   2.391304      2.391304  2.173913  2.826087
 5   1   2.173913      2.173913  2.173913  2.173913
 
+still earlier checkpoint is better and cheaper 6x less training tokens
+
