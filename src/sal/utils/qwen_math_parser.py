@@ -281,7 +281,14 @@ def strip_string(string, skip_unit=False):
             for unit_text in unit_texts:
                 # use regex, the prefix should be either the start of the string or a non-alphanumeric character
                 # the suffix should be either the end of the string or a non-alphanumeric character
-                _string = re.sub(r"(^|\W)" + unit_text + r"($|\W)", r"\1\2", string)
+                # _string = re.sub(r"(^|\W)" + unit_text + r"($|\W)", r"\1\2", string)
+                
+                # Hossam error here
+                try:
+                    _string = re.sub(r"(^|\W)" + re.escape(unit_text) + r"($|\W)", r"\1\2", string)
+                except Exception as e:
+                    print(f"Regex substitution failed: {e}")
+                    _string = string  # Fallback: Return the original string if substitution fails   
                 if _string != "":
                     string = _string
 
