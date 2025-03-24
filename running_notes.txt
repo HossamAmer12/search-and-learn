@@ -153,3 +153,50 @@ VS checkpoint-100 from tinyllama_math_code with 2T+54M tokens:
 7    2           3.8         7.2      3.2
 
 385x more train tokens
+=====
+
+running pythia
+
+time python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml --seed=1 --search_batch_size=25 --prm_batch_size=10 --dataset_start=0 --dataset_end=1 --n=64 --model_path=/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2 --prm_path=Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B --gpu_memory_utilization=0.1 --beam_width=2
+real    15m25.745s
+user    24m55.231s
+sys     3m47.056s
+
+time python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml --seed=1 --search_batch_size=25 --prm_batch_size=1 --dataset_start=0 --dataset_end=10 --n=64 --model_path=/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2 --prm_path=Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B --gpu_memory_utilization=0.1 --beam_width=2
+
+real    96m51.924s
+user    107m52.465s
+sys     21m11.271s --> 30 hrs
+
+time python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml --seed=1 --search_batch_size=25 --prm_batch_size=5 --dataset_start=0 --dataset_end=10 --n=64 --model_path=/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2 --prm_path=Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B --gpu_memory_utilization=0.1 --beam_width=2
+
+100 mins --> 30 hrs
+
+
+time python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml --seed=1 --search_batch_size=100 --prm_batch_size=50 --dataset_start=0 --dataset_end=100 --n=64 --model_path=/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2 --prm_path=Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B --gpu_memory_utilization=0.1 --beam_width=2
+
+112 mins.. but ran out of memory for PRM
+
+time python scripts/test_time_compute.py recipes/TinyLlama_v1.1_math_code/dvts.yaml --seed=1 --search_batch_size=100 --prm_batch_size=1 --dataset_start=0 --dataset_end=100 --n=64 --model_path=/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2 --prm_path=Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B --gpu_memory_utilization=0.1 --beam_width=2
+
+real    957m58.160s
+user    999m22.959s
+sys     205m0.982s
+15 hrs per 100 examples
+
+100 examples
+    n  acc_naive  acc_weighted  acc_maj  acc_cts
+0  16        0.0           0.0      0.0      0.0
+1   1        2.0           2.0      2.0      2.0
+2   2        0.0           0.0      2.0      2.0
+3  64        0.0           0.0      2.0      2.0
+4   4        0.0           0.0      2.0      2.0
+5  32        0.0           0.0      0.0      0.0
+
+    n  acc_baseline  acc_pass@k  acc_maj
+0   4           2.0         4.0      2.0
+1   1           2.0         2.0      2.0
+2   2           2.0         2.0      2.0
+3  64           2.0        18.0      2.0
+4  32           2.0        10.0      0.0
+5  16           2.0         6.0      0.0

@@ -8,7 +8,16 @@ set -evx
 # MODEL="/home/hossamamer/TTC_checkpoints/TTC-checkpoints/tinyllama-math-code-checkpoint-300"
 # MODEL="/home/hossamamer/TTC_checkpoints/TTC-checkpoints/tinyllama-math-code-checkpoint-200"
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-5000/checkpoint-240/"
-MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908/checkpoint-240/"
+# MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908/checkpoint-240/"
+
+# MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908/checkpoint-240/"
+
+# MODEL="/home/hossamamer/TTC_checkpoints/tinyllama-sft-prm800/tinyllama-orig-step-50k-105b/"
+# MODEL="/home/hossamamer/TTC_checkpoints/tinyllama-sft-prm800/tinyllama-orig-step-240k-503b/"
+# MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2"
+
+MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-1b-deduped/step143000/models--EleutherAI--pythia-1b-deduped/snapshots/9f638c32a09e234bce2a2da4d37eb08211b816cb/"
+
 
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
 RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
