@@ -40,7 +40,7 @@ RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
 i=0
     time python scripts/test_time_compute.py $RECIPE \
         --seed=1 --search_batch_size=100 --prm_batch_size=1 \
-        --dataset_start=$i --dataset_end=$((i+100)) \
+        --dataset_start=$i --dataset_end=$((i+500)) \
         --n=1 --model_path=$MODEL \
         --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=1
 # done
