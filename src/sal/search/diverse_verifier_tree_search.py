@@ -159,33 +159,100 @@ def _dvts(batch_of_prompts: list[str], config: Config, llm: LLM, prm: PRM):
     return output
 
 
-def dvts(examples, config: Config, llm: LLM, prm: PRM):
-    problems = examples["problem"]
-    beam_results = _dvts(problems, config, llm, prm)
+# def dvts(examples, config: Config, llm: LLM, prm: PRM):
+#     problems = examples["problem"]
+#     beam_results = _dvts(problems, config, llm, prm)
 
-    # group together alike beams and store in the dataset
-    grouped_results = defaultdict(list)
-    for results in beam_results:
-        grouped_results[results.prompt].append(results)
+#     # group together alike beams and store in the dataset
+#     grouped_results = defaultdict(list)
+#     for results in beam_results:
+#         grouped_results[results.prompt].append(results)
 
-    results = {"completions": [], "pred": [], "completion_tokens": [], "scores": []}
+#     results = {"completions": [], "pred": [], "completion_tokens": [], "scores": []}
 
-    for p in problems:
-        beams = grouped_results[p]
-        results["completions"].append([b.current_text for b in beams])
-        results["pred"].append(
-            beams[
-                np.argmax(
-                    [
-                        aggregate_scores(b.best_scores, config.agg_strategy)
-                        for b in beams
-                    ]
-                )
-            ].current_text
+#     for p in problems:
+#         beams = grouped_results[p]
+#         results["completions"].append([b.current_text for b in beams])
+#         results["pred"].append(
+#             beams[
+#                 np.argmax(
+#                     [
+#                         aggregate_scores(b.best_scores, config.agg_strategy)
+#                         for b in beams
+#                     ]
+#                 )
+#             ].current_text
+#         )
+#         results["scores"].append([b.best_scores for b in beams])
+#         results["completion_tokens"].append(-1)
+
+#     # TODO: construct and store the tree
+
+#     return results
+
+# baseline dvts
+def dvts(x, config: Config, llm: LLM, prm: PRM):
+    tokenizer = llm.get_tokenizer()
+
+    convs = [
+        [
+            {"role": "system", "content": config.system_prompt},
+            {"role": "user", "content": prompt},
+        ]
+        for prompt in x["problem"]
+    ]
+    tokenizer = llm.get_tokenizer()
+    # TODO: set the augmented template from a file
+    if config.custom_chat_template is not None:
+        tokenizer.chat_template = config.custom_chat_template
+    templated_convs = tokenizer.apply_chat_template(
+        convs, tokenize=False, add_generation_prompt=True
+    )
+
+    # Duplicate convs to generate config.n completions per prompt so we can do continous batching
+    # This makes [p1, p2, p3, p4] become [p1, p1, p2, p2, p3, p3, p4, p4] for e.g. config.n=2
+    templated_convs = [c for conv in templated_convs for c in [conv] * config.n]
+
+    # Initialize empty lists for completions and completion tokens
+    completions = [[] for _ in range(len(x["problem"]))]
+    completion_tokens = [[] for _ in range(len(x["problem"]))]
+
+    sampling_params = SamplingParams(
+        temperature=config.temperature,
+        max_tokens=config.max_tokens,
+        top_p=config.top_p,
+        n=1,  # Since we've already duplicated the prompt_token_ids, we only need to generate 1 completion per prompt
+    )
+
+    responses = llm.generate(
+        templated_convs,
+        sampling_params=sampling_params,
+        use_tqdm=True,
+    )
+    if len(responses) != len(x["problem"]) * config.n:
+        raise ValueError(
+            f"Generated {len(responses)} responses instead of {len(x['problem'] * config.n)}"
         )
-        results["scores"].append([b.best_scores for b in beams])
-        results["completion_tokens"].append(-1)
 
-    # TODO: construct and store the tree
+    for i in range(len(completions)):
+        completions[i] = [
+            output.text
+            for r in responses[i * config.n : (i + 1) * config.n]
+            for output in r.outputs
+        ]
+        completion_tokens[i] = [
+            len(output.token_ids)
+            for r in responses[i * config.n : (i + 1) * config.n]
+            for output in r.outputs
+        ]
 
-    return results
+    # Check we generated the correct number of completions for each prompt
+    for c in completions:
+        if len(c) != config.n:
+            raise ValueError(f"Generated {len(c)} completions instead of {config.n}")
+
+
+    x["completions"] = completions
+    x["completion_tokens"] = completion_tokens
+
+    return x

@@ -47,9 +47,9 @@ def aggregate_scores(
 
 
 def score(dataset: Dataset, config: Config) -> Dataset:
-    dataset = dataset.map(
-        lambda x: {"agg_scores": [aggregate_scores(s, "last") for s in x["scores"]]}
-    )
+    # dataset = dataset.map(
+    #     lambda x: {"agg_scores": [aggregate_scores(s, "last") for s in x["scores"]]}
+    # )
     subsets = [2**i for i in range(config.n) if 2**i <= config.n]
     for n in tqdm(subsets, desc="Computing majority & weighted predictions"):
         dataset = dataset.map(
@@ -64,32 +64,33 @@ def score(dataset: Dataset, config: Config) -> Dataset:
             num_proc=config.num_proc,
             desc=f"Extract answers {n}",
         )
-        dataset = dataset.map(
-            compute_weighted_pred,
-            fn_kwargs={"n": n},
-            num_proc=config.num_proc,
-            desc=f"Compute weighted pred {n}",
-        )
-        dataset = dataset.map(
-            compute_maj_pred,
-            fn_kwargs={"n": n},
-            num_proc=config.num_proc,
-            desc=f"Compute majority pred {n}",
-        )
-        dataset = dataset.map(
-            compute_naive_pred,
-            fn_kwargs={"n": n},
-            num_proc=config.num_proc,
-            desc=f"Compute naive pred {n}",
-        )
 
-        # Hossam Compute pass@k
-        dataset = dataset.map(
-            compute_pass_at_k_hossam,
-            fn_kwargs={"k": n},
-            num_proc=config.num_proc,
-            desc=f"Compute oracle pred {n}",
-        )
+        # dataset = dataset.map(
+        #     compute_weighted_pred,
+        #     fn_kwargs={"n": n},
+        #     num_proc=config.num_proc,
+        #     desc=f"Compute weighted pred {n}",
+        # )
+        # dataset = dataset.map(
+        #     compute_maj_pred,
+        #     fn_kwargs={"n": n},
+        #     num_proc=config.num_proc,
+        #     desc=f"Compute majority pred {n}",
+        # )
+        # dataset = dataset.map(
+        #     compute_naive_pred,
+        #     fn_kwargs={"n": n},
+        #     num_proc=config.num_proc,
+        #     desc=f"Compute naive pred {n}",
+        # )
+
+        # # Hossam Compute pass@k
+        # dataset = dataset.map(
+        #     compute_pass_at_k_hossam,
+        #     fn_kwargs={"k": n},
+        #     num_proc=config.num_proc,
+        #     desc=f"Compute oracle pred {n}",
+        # )
 
         if n == 1:
             # Hossam Compute baseline
@@ -102,6 +103,6 @@ def score(dataset: Dataset, config: Config) -> Dataset:
 
         # Nuke unused columns to keep dataset lean
         dataset = dataset.remove_columns(
-            [f"completions@{n}", f"agg_scores@{n}", f"preds@{n}"]
+            [f"completions@{n}", f"preds@{n}"]
         )
     return dataset
