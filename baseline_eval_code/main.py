@@ -274,8 +274,15 @@ def main():
         # Hossam format prompt
         # prompt = format_prompt(question, args.model)
         prompt = format_prompt_2(question, args.model)
+
+        # convs = [
+        #     {"role": "system", "content": prompt},
+        #     {"role": "user", "content": question},
+        # ]
+
         response = llm.generate([prompt], sampling_params)[0].outputs[0].text
-        print(f"response:\n{response}")
+        # response = llm.generate(convs, sampling_params)[0].outputs[0].text
+        # print(f"response:\n{response}")
         # predicted_answer = extract_answer(response)
 
         # Hossam predicted answer extract answer using the code
