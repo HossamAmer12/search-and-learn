@@ -19,7 +19,10 @@ set -evx
 # MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-1b-deduped/step143000/models--EleutherAI--pythia-1b-deduped/snapshots/9f638c32a09e234bce2a2da4d37eb08211b816cb/"
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-10000/"
 # MODEL="/home/hossamamer/.cache/huggingface/hub/models--TinyLlama--TinyLlama_v1.1_math_code/snapshots/698ef988e06730a38eca552cdf86e99c08118df5"
-MODEL="meta-llama/Llama-3.2-1B-Instruct"
+# MODEL="meta-llama/Llama-3.2-1B-Instruct"
+
+# MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-5000"
+MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-31908"
 
 
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
