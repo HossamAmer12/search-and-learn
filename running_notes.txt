@@ -259,3 +259,10 @@ sys     205m0.982s
 3  64           2.0        18.0      2.0
 4  32           2.0        10.0      0.0
 5  16           2.0         6.0      0.0
+
+baseline pythia-70m-deduped step 143000
+2% on math500 -- greedy decoding
+
+
+baseline pythia-70m-deduped step 3000
+0.6% on math500 -- greedy decoding

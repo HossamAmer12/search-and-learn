@@ -22,7 +22,11 @@ set -evx
 # MODEL="meta-llama/Llama-3.2-1B-Instruct"
 
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-5000"
-MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-31908"
+# MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-31908"
+
+# MODEL="/dataset/pythia-70m-deduped/step143000/models--EleutherAI--pythia-70m-deduped/snapshots/4ad6c938b037fd4762343dcc441ba1012a7401c8/"
+
+MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2/"
 
 
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
