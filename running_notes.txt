@@ -291,6 +291,7 @@ pythia training:
 pythia-70m
 baseline 2% on math500 -- greedy decoding for step143000
 
+5 epochs
 step80000   enlarged set 1.6%
   epoch                    =     4.9955
   total_flos               =  2603319GF
@@ -307,13 +308,27 @@ step143000 enlarged set 2.2%
   train_samples_per_second =    419.573
   train_steps_per_second   =      0.819
 
+1 epoch
+
+
+====
 pythia-450m
 
 step80000   
+
+5 epochs:
+***** train metrics *****
+  epoch                    =     4.9955
+  total_flos               =  2603319GF
+  train_loss               =     0.3173
+  train_runtime            = 6:40:23.45
+  train_samples_per_second =     88.953
+  train_steps_per_second   =      0.174
+step143000 
+***** train metrics *****
   epoch                    =     4.9955
   total_flos               =  2603319GF
   train_loss               =     0.3341
   train_runtime            = 6:39:51.19
   train_samples_per_second =     89.073
   train_steps_per_second   =      0.174
-step143000 
