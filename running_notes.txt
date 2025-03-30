@@ -289,7 +289,7 @@ baseline pythia-70m-deduped step 3000
 pythia training:
 
 pythia-70m
-baseline 2% on math500 -- greedy decoding for step143000
+baseline no training 2% on math500 -- greedy decoding for step143000
 
 5 epochs
 step80000   enlarged set 1.6%
@@ -313,6 +313,7 @@ step143000 enlarged set 2.2%
 
 ====
 pythia-450m
+baseline no training 1.8% on math500 -- greedy decoding for step143000
 
 
 step80000   
