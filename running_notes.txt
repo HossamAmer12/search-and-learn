@@ -264,5 +264,22 @@ baseline pythia-70m-deduped step 143000
 2% on math500 -- greedy decoding
 
 
+when trained on prm-800k
+/dataset/pythia_models/saved_models/pythia-sft-prm800/70m/from-checkpoint-143000/training_loss.png
+***** train metrics *****
+  epoch                    =     5.8776
+  total_flos               =    15409GF
+  train_loss               =     2.1325
+  train_runtime            = 0:03:14.09
+  train_samples_per_second =    383.896
+  train_steps_per_second   =      0.742
+
+checkpoint-50 1%
+checkpoint-100 1.4%
+
+
+with enlarged set:
+checkpoint-800 2.2%
+
 baseline pythia-70m-deduped step 3000
 0.6% on math500 -- greedy decoding
