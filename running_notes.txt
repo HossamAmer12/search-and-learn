@@ -309,10 +309,11 @@ step143000 enlarged set 2.2%
   train_steps_per_second   =      0.819
 
 1 epoch
-
+>>> training 1 epoch on server 41 for both checkpoints
 
 ====
 pythia-450m
+
 
 step80000   
 
@@ -332,3 +333,5 @@ step143000
   train_runtime            = 6:39:51.19
   train_samples_per_second =     89.073
   train_steps_per_second   =      0.174
+
+  >> evaluating on server 43
