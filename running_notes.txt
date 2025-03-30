@@ -349,3 +349,5 @@ step143000
   >> evaluating on server 43 (did not manage to evaluate the 5 epochs.. overwrite from both)
 
   >> Training 1 epoch on server 43 to see the results
+
+  loading pythia-1b on server 43
