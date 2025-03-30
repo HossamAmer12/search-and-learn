@@ -28,6 +28,7 @@ set -evx
 
 MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2/"
 
+MODEL="/dataset/pythia_models/saved_models/pythia-sft-prm800/70m/from-checkpoint-143000/checkpoint-50"
 
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
 RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
