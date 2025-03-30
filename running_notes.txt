@@ -335,4 +335,6 @@ step143000
   train_samples_per_second =     89.073
   train_steps_per_second   =      0.174
 
-  >> evaluating on server 43
+  >> evaluating on server 43 (did not manage to evaluate the 5 epochs.. overwrite from both)
+
+  >> Training 1 epoch on server 43 to see the results
