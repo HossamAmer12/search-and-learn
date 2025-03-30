@@ -310,6 +310,17 @@ step143000 enlarged set 2.2%
 
 1 epoch
 >>> training 1 epoch on server 41 for both checkpoints
+from-checkpoint-80000
+***** train metrics *****
+  epoch                    =     0.9997
+  total_flos               =    66383GF
+  train_loss               =     0.9554
+  train_runtime            = 0:29:55.40
+  train_samples_per_second =    238.048
+  train_steps_per_second   =       0.93
+>>> 1.4% on math500
+
+from-checkpoint-143000
 
 ====
 pythia-450m
