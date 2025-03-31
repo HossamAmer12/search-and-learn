@@ -23,6 +23,15 @@ set -evx
 
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-5000"
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-31908"
+# MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_baseline_enlarged/checkpoint-834/"
+
+MODEL_PATHS=(
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834/"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-92k-SFT-enlarged/checkpoint-834/"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-97k-SFT-enlarged/checkpoint-834/"
+)
+
+
 
 # MODEL="/dataset/pythia-70m-deduped/step143000/models--EleutherAI--pythia-70m-deduped/snapshots/4ad6c938b037fd4762343dcc441ba1012a7401c8/"
 
@@ -71,6 +80,16 @@ RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
 # done
 
 # for ((i=0; i<500; i+=10)); do
+i=0
+
+for MODEL in "${MODEL_PATHS[@]}"; do
+
+    time python scripts/test_time_compute.py $RECIPE \
+        --seed=1 --search_batch_size=100 --prm_batch_size=1 \
+        --dataset_start=$i --dataset_end=$((i+500)) \
+        --n=1 --model_path=$MODEL \
+        --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=1
+done
 # i=0
 #     time python scripts/test_time_compute.py $RECIPE \
 #         --seed=1 --search_batch_size=100 --prm_batch_size=1 \

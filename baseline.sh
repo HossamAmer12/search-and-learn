@@ -35,6 +35,7 @@ MODEL="/dataset/pythia_models/pythia-410m-deduped/step143000/models--EleutherAI-
 # MODEL=" /dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-143000/"
 # MODEL=" /dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-80000/"
 
+MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834/"
 
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
 RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
