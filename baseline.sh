@@ -23,7 +23,17 @@ set -evx
 
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-5000"
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-31908"
-# MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_baseline_enlarged/checkpoint-834/"
+
+# MODEL="/dataset/pythia-70m-deduped/step143000/models--EleutherAI--pythia-70m-deduped/snapshots/4ad6c938b037fd4762343dcc441ba1012a7401c8/"
+
+MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/step3000/models--EleutherAI--pythia-70m-deduped/snapshots/1a4f69ed960a00ecbdae629d21f14d36961285c2/"
+
+MODEL="/dataset/pythia_models/saved_models/pythia-sft-prm800/70m/from-checkpoint-143000/checkpoint-144"
+
+
+MODEL="/dataset/pythia_models/pythia-410m-deduped/step143000/models--EleutherAI--pythia-410m-deduped/snapshots/c0b6bef7dd1ec11d3baa07ee955de98a414dd464/"
+# MODEL=" /dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-143000/"
+# MODEL=" /dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-80000/"
 
 MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834/"
 

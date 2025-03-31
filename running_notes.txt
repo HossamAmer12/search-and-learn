@@ -134,8 +134,8 @@ tinyllama-from-checkpoint-5000
 
     n  acc_baseline  acc_pass@k  acc_maj
 0  64           1.2        26.0      3.6
-1  16           1.2        12.6      2.8
 2  32           1.2        18.2      3.8
+1  16           1.2        12.6      2.8
 3   4           1.2         4.8      1.8
 4   2           1.2         2.4      1.2
 5   1           1.2         1.2      1.2
@@ -162,14 +162,14 @@ tinyllama-from-checkpoint-31908
 0  64      2.173913   26.739130  3.695652
 1  32      2.173913   19.130435  2.826087
 2  16      2.173913   11.304348  2.173913
-3   2      2.173913    3.043478  2.173913
 4   4      2.173913    4.347826  2.391304
+3   2      2.173913    3.043478  2.173913
 5   1      2.173913    2.173913  2.173913
 
     n  acc_naive  acc_weighted   acc_maj   acc_cts
-0  16   3.260870      3.913043  2.173913  4.347826
 1  64   7.608696      5.000000  3.695652  9.347826
 2  32   5.869565      3.695652  2.826087  6.956522
+0  16   3.260870      3.913043  2.173913  4.347826
 3   4   1.956522      1.956522  2.391304  2.826087
 4   2   2.391304      2.391304  2.173913  2.826087
 5   1   2.173913      2.173913  2.173913  2.173913
@@ -259,3 +259,95 @@ sys     205m0.982s
 3  64           2.0        18.0      2.0
 4  32           2.0        10.0      0.0
 5  16           2.0         6.0      0.0
+
+baseline pythia-70m-deduped step 143000
+2% on math500 -- greedy decoding
+
+
+when trained on prm-800k
+/dataset/pythia_models/saved_models/pythia-sft-prm800/70m/from-checkpoint-143000/training_loss.png
+***** train metrics *****
+  epoch                    =     5.8776
+  total_flos               =    15409GF
+  train_loss               =     2.1325
+  train_runtime            = 0:03:14.09
+  train_samples_per_second =    383.896
+  train_steps_per_second   =      0.742
+
+checkpoint-50 1%
+checkpoint-100 1.4%
+
+
+with enlarged set:
+checkpoint-800 2.2%
+
+baseline pythia-70m-deduped step 3000
+0.6% on math500 -- greedy decoding
+
+
+------- 
+pythia training:
+
+pythia-70m
+baseline no training 2% on math500 -- greedy decoding for step143000
+
+5 epochs
+step80000   enlarged set 1.6%
+  epoch                    =     4.9955
+  total_flos               =  2603319GF
+  train_loss               =     0.3341
+  train_runtime            = 6:39:51.19
+  train_samples_per_second =     89.073
+  train_steps_per_second   =      0.174
+step143000 enlarged set 2.2%
+***** train metrics *****
+  epoch                    =     4.9955
+  total_flos               =   331638GF
+  train_loss               =     0.9684
+  train_runtime            = 1:24:53.18
+  train_samples_per_second =    419.573
+  train_steps_per_second   =      0.819
+
+1 epoch
+>>> training 1 epoch on server 41 for both checkpoints
+from-checkpoint-80000
+***** train metrics *****
+  epoch                    =     0.9997
+  total_flos               =    66383GF
+  train_loss               =     0.9554
+  train_runtime            = 0:29:55.40
+  train_samples_per_second =    238.048
+  train_steps_per_second   =       0.93
+>>> 1.4% on math500
+
+from-checkpoint-143000
+
+====
+pythia-450m
+baseline no training 1.8% on math500 -- greedy decoding for step143000
+
+
+step80000   
+
+5 epochs:
+***** train metrics *****
+  epoch                    =     4.9955
+  total_flos               =  2603319GF
+  train_loss               =     0.3173
+  train_runtime            = 6:40:23.45
+  train_samples_per_second =     88.953
+  train_steps_per_second   =      0.174
+step143000 
+***** train metrics *****
+  epoch                    =     4.9955
+  total_flos               =  2603319GF
+  train_loss               =     0.3341
+  train_runtime            = 6:39:51.19
+  train_samples_per_second =     89.073
+  train_steps_per_second   =      0.174
+
+  >> evaluating on server 43 (did not manage to evaluate the 5 epochs.. overwrite from both)
+
+  >> Training 1 epoch on server 43 to see the results
+
+  loading pythia-1b on server 43
