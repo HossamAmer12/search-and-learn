@@ -31,10 +31,17 @@ MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/
 MODEL="/dataset/pythia_models/saved_models/pythia-sft-prm800/70m/from-checkpoint-143000/checkpoint-144"
 
 
+# MODEL_PATHS=(
+#     "/dataset/pythia_models/pythia-410m-deduped/step143000/models--EleutherAI--pythia-410m-deduped/snapshots/c0b6bef7dd1ec11d3baa07ee955de98a414dd464/"
+#     "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-143000/"
+#     "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-80000/"
+#     "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-40000/"
+# )
+
 MODEL_PATHS=(
-    "/dataset/pythia_models/pythia-410m-deduped/step143000/models--EleutherAI--pythia-410m-deduped/snapshots/c0b6bef7dd1ec11d3baa07ee955de98a414dd464/"
-    "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-143000/"
-    "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-80000/"
+    "/dataset/saved_models/pythia-sft-prm800/70m/from-checkpoint-143000/checkpoint-834/"
+    "/dataset/saved_models/pythia-sft-prm800/70m/from-checkpoint-80000/checkpoint-834/"
+    "/dataset/saved_models/pythia-sft-prm800/70m/from-checkpoint-40000/checkpoint-834/"
 )
 
 for MODEL in "${MODEL_PATHS[@]}"; do
