@@ -5,21 +5,25 @@
 set -evx
 
 MODEL_PATHS=(
-    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_baseline_enlarged/checkpoint-834/"
-    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-82k-SFT-enlarged/checkpoint-834/"
-    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834/"
-    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-92k-SFT-enlarged/checkpoint-834/"
-    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-97k-SFT-enlarged/checkpoint-834/"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_baseline_enlarged/checkpoint-834"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-82k-SFT-enlarged/checkpoint-834"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-92k-SFT-enlarged/checkpoint-834"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-97k-SFT-enlarged/checkpoint-834"
 )
+
+MODEL="${MODEL_PATHS[3]}"
+echo "$MODEL"
+
 
 RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
 # RECIPE=recipes/TinyLlama_v1.1_math_code/best_of_n.yaml
 
-MODEL=${my_array[0]}
+
 
 for ((i=0; i<500; i+=10)); do
 # i=0
-    CUDA_VISIBLE_DEVICES=0,1 python scripts/test_time_compute.py $RECIPE \
+    CUDA_VISIBLE_DEVICES=6,7 python scripts/test_time_compute.py $RECIPE \
         --seed=1 --search_batch_size=25 --prm_batch_size=1 \
         --dataset_start=$i --dataset_end=$((i+10)) \
         --n=64 --model_path=$MODEL \
