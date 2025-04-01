@@ -381,8 +381,10 @@ doing pythia again with enlarged set:
 server 16 8 GPUs
 pythia-70m 
 80000
-
+1.6%(1epch) => 2.2%(5epch)
 
 40000
- 
+2.4% (1epch)
+
 143000
+1.6% (1epch) - > 2.2% (5epch)
