@@ -321,11 +321,26 @@ from-checkpoint-80000
 >>> 1.4% on math500
 
 from-checkpoint-143000
+***** train metrics *****
+  epoch                    =     0.9997
+  total_flos               =    66355GF
+  train_loss               =     1.1833
+  train_runtime            = 0:29:46.04
+  train_samples_per_second =    239.296
+  train_steps_per_second   =      0.934
 
 ====
 pythia-450m
 baseline no training 1.8% on math500 -- greedy decoding for step143000
 
+step40000
+***** train metrics *****
+  epoch                    =     0.9997
+  total_flos               =   521109GF
+  train_loss               =     0.4904
+  train_runtime            = 2:18:28.62
+  train_samples_per_second =      51.44
+  train_steps_per_second   =      0.201
 
 step80000   
 
@@ -346,8 +361,28 @@ step143000
   train_samples_per_second =     89.073
   train_steps_per_second   =      0.174
 
+***** train metrics *****
+  epoch                    =     0.9991
+  total_flos               =   520658GF
+  train_loss               =     0.4762
+  train_runtime            = 1:20:07.78
+  train_samples_per_second =     88.896
+  train_steps_per_second   =      0.173
+
   >> evaluating on server 43 (did not manage to evaluate the 5 epochs.. overwrite from both)
 
   >> Training 1 epoch on server 43 to see the results
 
   loading pythia-1b on server 43
+
+  =======
+
+doing pythia again with enlarged set:
+server 16 8 GPUs
+pythia-70m 
+80000
+
+
+40000
+ 
+143000
