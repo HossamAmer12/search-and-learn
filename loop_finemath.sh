@@ -23,6 +23,15 @@ set -evx
 
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-5000"
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/from-checkpoint-31908"
+# MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_baseline_enlarged/checkpoint-834/"
+
+MODEL_PATHS=(
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834/"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-92k-SFT-enlarged/checkpoint-834/"
+    "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-97k-SFT-enlarged/checkpoint-834/"
+)
+
+
 
 # MODEL="/dataset/pythia-70m-deduped/step143000/models--EleutherAI--pythia-70m-deduped/snapshots/4ad6c938b037fd4762343dcc441ba1012a7401c8/"
 
@@ -31,33 +40,28 @@ MODEL="/home/hossamamer/TTC_workspace/evaluate_math_baseline/pythia-70m-deduped/
 MODEL="/dataset/pythia_models/saved_models/pythia-sft-prm800/70m/from-checkpoint-143000/checkpoint-144"
 
 
-MODEL="/dataset/pythia_models/pythia-410m-deduped/step143000/models--EleutherAI--pythia-410m-deduped/snapshots/c0b6bef7dd1ec11d3baa07ee955de98a414dd464/"
-# MODEL=" /dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-143000/"
-# MODEL=" /dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-80000/"
+# MODEL_PATHS=(
+#     "/dataset/pythia_models/pythia-410m-deduped/step143000/models--EleutherAI--pythia-410m-deduped/snapshots/c0b6bef7dd1ec11d3baa07ee955de98a414dd464/"
+#     "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-143000/"
+#     "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-80000/"
+#     "/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-40000/"
+# )
 
-# MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834/"
+MODEL_PATHS=(
+    "/dataset/finemath/finemath-llama3b/30B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/b60bc20540d30bc69efb0253a9ea1b4a77ac2054/"
+    "/dataset/finemath/finemath-llama3b/40B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/a5327c94c99a795d0a48089253b8f9356ceed281/"
+    "/dataset/finemath/finemath-llama3b/50B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/49c2b41df57e3e65368f7e2ccdcd50ec3fe88ba8/"
+)
 
-MODEL="/dataset/finemath/finemath-llama3b/60B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/938366e8cae790af6f01aa67cb525a2c14f65561"
-
-# MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
-RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
-# RECIPE=recipes/TinyLlama_v1.1_math_code/best_of_n.yaml
-
-
-# for ((i=0; i<500; i+=10)); do
-# # i=0
-#     time python scripts/test_time_compute.py $RECIPE \
-#         --seed=1 --search_batch_size=25 --prm_batch_size=1 \
-#         --dataset_start=$i --dataset_end=$((i+10)) \
-#         --n=64 --model_path=$MODEL \
-#         --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=2
-# done
-
-# for ((i=0; i<500; i+=10)); do
-i=0
-    time python scripts/test_time_compute.py $RECIPE \
-        --seed=1 --search_batch_size=100 --prm_batch_size=1 \
-        --dataset_start=$i --dataset_end=$((i+500)) \
+for MODEL in "${MODEL_PATHS[@]}"; do
+    echo "Processing model at: $MODEL"
+    RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
+    for ((i=0; i<500; i+=50)); do
+        time python scripts/test_time_compute.py $RECIPE \
+        --seed=1 --search_batch_size=25 --prm_batch_size=1 \
+        --dataset_start=$i --dataset_end=$((i+50)) \
         --n=1 --model_path=$MODEL \
         --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=1
-# done
+    done
+done
+

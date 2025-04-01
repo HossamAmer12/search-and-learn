@@ -37,7 +37,13 @@ MODEL="/dataset/pythia_models/pythia-410m-deduped/step143000/models--EleutherAI-
 
 # MODEL="/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-87k-SFT-enlarged/checkpoint-834/"
 
-MODEL="/dataset/finemath/finemath-llama3b/60B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/938366e8cae790af6f01aa67cb525a2c14f65561"
+# MODEL="/dataset/finemath/finemath-llama3b/60B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/938366e8cae790af6f01aa67cb525a2c14f65561"
+
+# MODEL="/dataset/finemath/finemath-llama3b/10B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/f3be85d2df204cf454cfd06657b7b0c788ceedb1/"
+
+MODEL="/dataset/finemath/finemath-llama3b/20B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/4ccc2949da259213552d6257a89c9448a666437e/"
+# MODEL="/dataset/finemath/finemath-llama3b/30B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/b60bc20540d30bc69efb0253a9ea1b4a77ac2054/"
+
 
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
 RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
@@ -53,11 +59,10 @@ RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
 #         --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=2
 # done
 
-# for ((i=0; i<500; i+=10)); do
-i=0
+for ((i=0; i<500; i+=50)); do
     time python scripts/test_time_compute.py $RECIPE \
-        --seed=1 --search_batch_size=100 --prm_batch_size=1 \
-        --dataset_start=$i --dataset_end=$((i+500)) \
+        --seed=1 --search_batch_size=25 --prm_batch_size=1 \
+        --dataset_start=$i --dataset_end=$((i+50)) \
         --n=1 --model_path=$MODEL \
         --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=1
-# done
+done
