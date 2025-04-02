@@ -14,23 +14,23 @@ MODEL_PATHS=(
     "/dataset/finemath/finemath-llama3b/10B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/f3be85d2df204cf454cfd06657b7b0c788ceedb1/"
 )
 
+# 150 mins per batch of i
 MODEL=${MODEL_PATHS[0]}
-i=0
 
 # for MODEL in "${MODEL_PATHS[@]}"; do
     echo "Processing model at: $MODEL"
     RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
-    time python scripts/test_time_compute.py $RECIPE \
+    # time python scripts/test_time_compute.py $RECIPE \
+    #     --seed=1 --search_batch_size=25 --prm_batch_size=1 \
+    #     --dataset_start=$i --dataset_end=$((i+5)) \
+    #     --n=64 --model_path=$MODEL \
+    #     --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.4 --beam_width=2
+    for ((i=0; i<500; i+=5)); do
+        time python scripts/test_time_compute.py $RECIPE \
         --seed=1 --search_batch_size=25 --prm_batch_size=1 \
-        --dataset_start=$i --dataset_end=$((i+1)) \
+        --dataset_start=$i --dataset_end=$((i+5)) \
         --n=64 --model_path=$MODEL \
-        --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=2
-    # for ((i=0; i<500; i+=50)); do
-        # time python scripts/test_time_compute.py $RECIPE \
-        # --seed=1 --search_batch_size=25 --prm_batch_size=1 \
-        # --dataset_start=$i --dataset_end=$((i+10)) \
-        # --n=64 --model_path=$MODEL \
-        # --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=2
-    # done
+        --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.4 --beam_width=2
+    done
 # done
 
