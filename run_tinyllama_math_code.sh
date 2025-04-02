@@ -12,7 +12,7 @@ MODEL_PATHS=(
     "/data00/maryam/saved_models/tinyllama-sft-prm800/TinyLlama_math_code_step-97k-SFT-enlarged/checkpoint-834"
 )
 
-MODEL="${MODEL_PATHS[3]}"
+MODEL="${MODEL_PATHS[4]}"
 echo "$MODEL"
 
 
