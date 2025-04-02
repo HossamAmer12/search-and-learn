@@ -14,6 +14,13 @@ MODEL_PATHS=(
     "/dataset/finemath/finemath-llama3b/10B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/f3be85d2df204cf454cfd06657b7b0c788ceedb1/"
 )
 
+MODEL_PATHS=(
+    "/data00/dataset/finemath/finemath-llama3b/120B/models--HuggingFaceTB--finemath-ablation-4plus-160B/snapshots/9ad7077a5473c2ca83d1bce14728660a0f618c34/"
+    "/data00/dataset/finemath/finemath-llama3b/80B/models--HuggingFaceTB--finemath-ablation-4plus-160B/snapshots/1902d2e4afb3e01dfdc759c22348ae1884d04543/"
+    "/data00/dataset/finemath/finemath-llama3b/40B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/a5327c94c99a795d0a48089253b8f9356ceed281/"
+    "/data00/dataset/finemath/finemath-llama3b/10B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/f3be85d2df204cf454cfd06657b7b0c788ceedb1/"
+)
+
 # 150 mins per batch of i
 MODEL=${MODEL_PATHS[0]}
 
