@@ -26,8 +26,9 @@ MODEL_PATHS=(
     "/data00/dataset/finemath/finemath-llama3b/50B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/49c2b41df57e3e65368f7e2ccdcd50ec3fe88ba8/"
 )
 
-# 150 mins per batch of i
-MODEL=${MODEL_PATHS[4]}
+# 150 mins per batch of i (3 hrs)
+# MODEL=${MODEL_PATHS[4]}
+MODEL=${MODEL_PATHS[1]}
 i=0
 
 # 200 mins per batch of i
