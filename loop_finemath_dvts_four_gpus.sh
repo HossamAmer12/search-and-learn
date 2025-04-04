@@ -27,8 +27,8 @@ MODEL_PATHS=(
 )
 
 # 150 mins per batch of i (3 hrs)
-# MODEL=${MODEL_PATHS[4]}
-MODEL=${MODEL_PATHS[1]}
+MODEL=${MODEL_PATHS[4]}
+# MODEL=${MODEL_PATHS[1]}
 i=0
 
 # 200 mins per batch of i
@@ -48,7 +48,7 @@ i=0
     #     --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.45 --beam_width=2
     # done
 
-    for ((i=7; i<500; i+=1)); do
+    for ((i=0; i<500; i+=1)); do
         echo "Running test for dataset index $i..."
         if ! time python scripts/test_time_compute.py $RECIPE \
         --seed=1 --search_batch_size=25 --prm_batch_size=1 \

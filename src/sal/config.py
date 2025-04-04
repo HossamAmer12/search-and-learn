@@ -62,7 +62,9 @@ class Config:
     # DVTS / Beam Search options
     beam_width: int = 4  # m in the paper
     num_iterations: int = 40
-    lookahead: int = 1
+    # num_iterations: int = 20
+    # lookahead: int = 1
+    lookahead: int = 0
 
     # Beam search options:
     filter_duplicates: bool = False
