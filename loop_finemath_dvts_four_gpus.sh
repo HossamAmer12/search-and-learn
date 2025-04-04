@@ -56,7 +56,7 @@ i=0
         --n=64 --model_path=$MODEL \
         --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" \
         --gpu_memory_utilization=0.45 --beam_width=2; then
-        echo "Failed at index $i" >> $MODEL_error_log.txt
+        echo "Failed at index $i" >> ${MODEL}_error_log.txt
         fi
     done
 # done
