@@ -42,6 +42,8 @@ MODEL="/dataset/finemath/finemath-llama3b/60B/models--HuggingFaceTB--finemath-ab
 MODEL="/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-143000/checkpoint-834/"
 MODEL="/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-80000/checkpoint-834/"
 
+MODEL="/dataset/pythia_models/saved_models/pythia-sft-prm800/410m/from-checkpoint-40000/checkpoint-800/"
+
 # MODEL="/home/m00918254/TTC-checkpoints/tinyllama-sft-prm800/from-checkpoint-31908"
 RECIPE=recipes/TinyLlama_v1.1_math_code/dvts.yaml
 # RECIPE=recipes/TinyLlama_v1.1_math_code/best_of_n.yaml
