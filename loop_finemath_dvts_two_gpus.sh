@@ -31,12 +31,13 @@ MODEL_PATHS=(
     "/data00/dataset/finemath/finemath-llama3b/10B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/f3be85d2df204cf454cfd06657b7b0c788ceedb1/"
 
     "/data00/dataset/finemath/finemath-llama3b/20B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/4ccc2949da259213552d6257a89c9448a666437e/"
-    "/data00/dataset/finemath/finemath-llama3b/30B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/b60bc20540d30bc69efb0253a9ea1b4a77ac2054/"
+    "/dataset/pythia_models/finemath/finemath-llama3b/30B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/b60bc20540d30bc69efb0253a9ea1b4a77ac2054/"
     "/data00/dataset/finemath/finemath-llama3b/50B/models--HuggingFaceTB--finemath-ablation-finemath-4plus/snapshots/49c2b41df57e3e65368f7e2ccdcd50ec3fe88ba8/"
 )
 
 # 150 mins per batch of i
-MODEL=${MODEL_PATHS[4]}
+# MODEL=${MODEL_PATHS[4]}
+MODEL=${MODEL_PATHS[3]}
 
 # for MODEL in "${MODEL_PATHS[@]}"; do
     echo "Processing model at: $MODEL"
@@ -46,12 +47,24 @@ MODEL=${MODEL_PATHS[4]}
     #     --dataset_start=$i --dataset_end=$((i+5)) \
     #     --n=64 --model_path=$MODEL \
     #     --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.4 --beam_width=2
-    for ((i=0; i<500; i+=1)); do
-        time python scripts/test_time_compute.py $RECIPE \
+    # for ((i=0; i<500; i+=1)); do
+    #     time python scripts/test_time_compute.py $RECIPE \
+    #     --seed=1 --search_batch_size=25 --prm_batch_size=1 \
+    #     --dataset_start=$i --dataset_end=$((i+1)) \
+    #     --n=64 --model_path=$MODEL \
+    #     --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.4 --beam_width=2
+    # done
+
+      for ((i=0; i<500; i+=5)); do
+        echo "Running test for dataset index $i..."
+        if ! time python scripts/test_time_compute.py $RECIPE \
         --seed=1 --search_batch_size=25 --prm_batch_size=1 \
-        --dataset_start=$i --dataset_end=$((i+1)) \
+        --dataset_start=$i --dataset_end=$((i+5)) \
         --n=64 --model_path=$MODEL \
-        --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" --gpu_memory_utilization=0.4 --beam_width=2
+        --prm_path="Skywork/Skywork-o1-Open-PRM-Qwen-2.5-1.5B" \
+        --gpu_memory_utilization=0.4 --beam_width=2; then
+        echo "Failed at index $i" >> ${MODEL}_error_log.txt
+        fi
     done
 # done
 
